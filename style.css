@@ -1709,3 +1709,67 @@ body {
         font-size: 1.1rem;
     }
 }
+
+/* Нижняя навигация для мобильных */
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    z-index: 1000;
+    justify-content: space-around;
+    padding: 8px 0 12px;
+}
+
+.mobile-nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: 0.2s;
+    flex: 1;
+    padding: 5px 0;
+}
+
+.mobile-nav-item i {
+    font-size: 1.4rem;
+    color: #64748b;
+}
+
+.mobile-nav-item.active {
+    color: #2563eb;
+}
+
+.mobile-nav-item.active i {
+    color: #2563eb;
+}
+
+@media (max-width: 768px) {
+    .desktop-tabs {
+        display: none; /* скрываем верхние табы */
+    }
+    .mobile-bottom-nav {
+        display: flex; /* показываем нижнюю панель */
+    }
+    /* Добавляем отступ снизу для основного контента и подвала, чтобы не перекрывались */
+    .executor-main {
+        padding-bottom: 80px;
+    }
+    .footer {
+        margin-bottom: 70px;
+    }
+    /* Корректировка чата на мобильных, чтобы не залезал под навигацию */
+    .chat-container {
+        height: calc(100vh - 250px);
+        margin-bottom: 70px;
+    }
+}
