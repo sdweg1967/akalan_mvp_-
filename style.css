@@ -1834,3 +1834,21 @@ body {
         margin-bottom: 70px;
     }
 }
+
+.search-orders {
+    margin: 20px 0;
+}
+.search-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 40px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.2s;
+    background: white;
+}
+.search-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #2563eb20;
+}
