@@ -25,7 +25,7 @@
                 <nav class="header__nav">
                     <ul class="nav-list">
                         <li><a href="#overview" class="nav-link">Обзор</a></li>
-                        <li><a href="#orders" class="nav-link">Мои заказы</a></li>
+                        <li><a href="#orders" class="nav-link">Заказы</a></li>
                         <li><a href="#chat" class="nav-link">Чат</a></li>
                         <li><a href="#profile" class="nav-link">Профиль</a></li>
                     </ul>
@@ -42,8 +42,8 @@
                 <p>Это ваш личный кабинет заказчика. Здесь вы можете управлять заказами, общаться с исполнителями и настраивать профиль.</p>
             </div>
 
-            <!-- Вкладки (табы) -->
-            <div class="customer-tabs">
+            <!-- Вкладки для десктопа -->
+            <div class="customer-tabs desktop-tabs">
                 <button class="customer-tab active" data-tab="overview">Обзор</button>
                 <button class="customer-tab" data-tab="orders">Мои заказы</button>
                 <button class="customer-tab" data-tab="chat">Чат</button>
@@ -116,9 +116,7 @@
                 <div class="tab-pane" id="orders">
                     <h2>Мои заказы</h2>
                     <button class="btn btn-primary" id="newOrderBtn" style="margin-bottom: 20px;"><i class="fas fa-plus"></i> Новый заказ</button>
-                    <div class="orders-list">
-                        <!-- Здесь будет динамический список заказов -->
-                    </div>
+                    <div class="orders-list"></div>
                 </div>
 
                 <!-- Чат с исполнителями -->
@@ -164,9 +162,7 @@
                                 <span class="chat-with">Алексей Петров</span>
                                 <button class="chat-back-btn"><i class="fas fa-arrow-left"></i></button>
                             </div>
-                            <div class="chat-messages" id="chatMessages">
-                                <!-- Сообщения будут добавляться сюда динамически -->
-                            </div>
+                            <div class="chat-messages" id="chatMessages"></div>
                             <div class="chat-input-area">
                                 <input type="text" placeholder="Напишите сообщение..." id="chatInput">
                                 <button id="sendMessageBtn"><i class="fas fa-paper-plane"></i></button>
@@ -183,6 +179,26 @@
             </div>
         </div>
     </main>
+
+    <!-- Нижняя навигация для мобильных -->
+    <nav class="mobile-bottom-nav">
+        <button class="mobile-nav-item active" data-tab="overview">
+            <i class="fas fa-home"></i>
+            <span>Обзор</span>
+        </button>
+        <button class="mobile-nav-item" data-tab="orders">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Заказы</span>
+        </button>
+        <button class="mobile-nav-item" data-tab="chat">
+            <i class="fas fa-comment-dots"></i>
+            <span>Чат</span>
+        </button>
+        <button class="mobile-nav-item" data-tab="profile">
+            <i class="fas fa-user"></i>
+            <span>Профиль</span>
+        </button>
+    </nav>
 
     <footer class="footer">
         <div class="container footer__container">
@@ -211,32 +227,37 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Переключение вкладок
-            const tabs = document.querySelectorAll('.customer-tab');
+            // Элементы навигации
+            const desktopTabs = document.querySelectorAll('.customer-tab');
+            const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
             const panes = document.querySelectorAll('.tab-pane');
 
-            tabs.forEach(tab => {
+            // Функция переключения вкладок
+            function switchTab(tabId) {
+                desktopTabs.forEach(t => t.classList.remove('active'));
+                mobileNavItems.forEach(i => i.classList.remove('active'));
+                panes.forEach(p => p.classList.remove('active'));
+
+                document.querySelector(`.customer-tab[data-tab="${tabId}"]`).classList.add('active');
+                document.querySelector(`.mobile-nav-item[data-tab="${tabId}"]`).classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            }
+
+            // Обработчики для десктопных табов
+            desktopTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    const targetId = tab.dataset.tab;
-                    tabs.forEach(t => t.classList.remove('active'));
-                    panes.forEach(p => p.classList.remove('active'));
-
-                    tab.classList.add('active');
-                    document.getElementById(targetId).classList.add('active');
-
-                    if (targetId === 'chat') {
-                        const firstContact = document.querySelector('.chat-contact');
-                        if (firstContact) {
-                            document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'));
-                            firstContact.classList.add('active');
-                            updateChatHeader(firstContact);
-                            loadMessages(firstContact.dataset.contact);
-                        }
-                    }
+                    switchTab(tab.dataset.tab);
                 });
             });
 
-            // --- Чат (аналогично странице исполнителя) ---
+            // Обработчики для мобильных пунктов
+            mobileNavItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    switchTab(item.dataset.tab);
+                });
+            });
+
+            // --- Код чата (как на странице исполнителя) ---
             const contacts = document.querySelectorAll('.chat-contact');
             const chatMessages = document.getElementById('chatMessages');
             const chatInput = document.getElementById('chatInput');
@@ -344,7 +365,6 @@
                 }
             });
 
-            // Инициализация чата
             const firstContact = document.querySelector('.chat-contact');
             if (firstContact) {
                 firstContact.classList.add('active');
@@ -360,7 +380,7 @@
                 chatWindow.style.display = 'flex';
             }
 
-            // --- Список заказов (динамическая загрузка) ---
+            // --- Список заказов (заглушка) ---
             const ordersList = document.querySelector('#orders .orders-list');
             if (ordersList) {
                 const dummyOrders = [
