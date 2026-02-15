@@ -112,3 +112,52 @@ if (searchInput) {
 }
 // Первоначальный рендер
 renderOrders();
+
+const allOrders = [
+    { title: 'Разработка лендинга', executor: 'Алексей Петров', budget: 30000, status: 'В работе' },
+    { title: 'Настройка CRM', executor: 'Ищет исполнителя', budget: 15000, status: 'pending' },
+    { title: 'Аудит безопасности', executor: 'Екатерина Смирнова', budget: 25000, status: 'completed' },
+    { title: 'Интеграция API', executor: 'Дмитрий Козлов', budget: 40000, status: 'active' },
+    { title: 'Разработка мобильного приложения', executor: 'Ищет исполнителя', budget: 120000, status: 'pending' },
+    { title: 'Поддержка сервера', executor: 'Иван Петров', budget: 8000, status: 'active' }
+];
+
+function renderOrders(filterText = '') {
+    const ordersList = document.querySelector('#orders .orders-list');
+    if (!ordersList) return;
+    ordersList.innerHTML = '';
+    const filtered = allOrders.filter(order => 
+        order.title.toLowerCase().includes(filterText.toLowerCase()) ||
+        order.executor.toLowerCase().includes(filterText.toLowerCase())
+    );
+    filtered.forEach(order => {
+        const card = document.createElement('div');
+        card.className = 'order-card';
+        let statusClass = '';
+        let statusText = order.status;
+        if (order.status === 'В работе' || order.status === 'active') {
+            statusClass = 'status-active';
+            statusText = 'В работе';
+        } else if (order.status === 'pending' || order.status === 'Ищет исполнителя') {
+            statusClass = 'status-pending';
+            statusText = 'Ищет исполнителя';
+        } else if (order.status === 'completed') {
+            statusClass = 'status-completed';
+            statusText = 'Завершён';
+        }
+        card.innerHTML = `
+            <div class="order-header">
+                <span class="order-title">${order.title}</span>
+                <span class="order-status ${statusClass}">${statusText}</span>
+            </div>
+            <div class="order-meta">Исполнитель: ${order.executor} · Бюджет: ${order.budget} ₽</div>
+        `;
+        ordersList.appendChild(card);
+    });
+}
+
+const searchInput = document.getElementById('searchOrdersInput');
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => renderOrders(e.target.value));
+}
+renderOrders();
