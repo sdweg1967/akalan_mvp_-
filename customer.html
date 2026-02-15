@@ -111,12 +111,14 @@
                     </div>
                 </div>
 
-                <!-- Мои заказы (полный список) -->
-                <div class="tab-pane" id="orders">
-                    <h2>Мои заказы</h2>
-                    <button class="btn btn-primary" id="newOrderBtn" style="margin-bottom: 20px;"><i class="fas fa-plus"></i> Новый заказ</button>
-                    <div class="orders-list"></div>
-                </div>
+               <div class="tab-pane" id="orders">
+    <h2>Мои заказы</h2>
+    <div class="search-orders">
+        <input type="text" id="searchOrdersInput" placeholder="Поиск по названию или исполнителю..." class="search-input">
+    </div>
+    <button class="btn btn-primary" id="newOrderBtn" style="margin-bottom: 20px;"><i class="fas fa-plus"></i> Новый заказ</button>
+    <div class="orders-list"></div>
+</div>
 
                 <!-- Чат с исполнителями -->
                 <div class="tab-pane" id="chat">
@@ -425,4 +427,5 @@
     </script>
 </body>
 </html>
+
 
