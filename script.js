@@ -60,3 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+// Подтверждение выхода
+document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    if (confirm('Вы действительно хотите выйти?')) {
+        window.location.href = 'auth.html';
+    }
+});
