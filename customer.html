@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>АКАЛАН — Кабинет заказчика</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo">
+                <a href="index.html">АКАЛАН</a>
+            </div>
+            <div class="header__buttons">
+                <a href="index.html" class="btn btn-outline home-btn" title="На главную">
+                    <i class="fas fa-home"></i> <span class="home-text">Главная</span>
+                </a>
+                <a href="auth.html" class="btn btn-primary">Выйти</a>
+            </div>
+            <input type="checkbox" id="burger-toggle" class="burger-toggle">
+            <label for="burger-toggle" class="burger-icon"><i class="fas fa-bars"></i></label>
+            <div class="header__nav-wrapper">
+                <nav class="header__nav">
+                    <ul class="nav-list">
+                        <li><a href="#overview" class="nav-link">Обзор</a></li>
+                        <li><a href="#orders" class="nav-link">Мои заказы</a></li>
+                        <li><a href="#chat" class="nav-link">Чат</a></li>
+                        <li><a href="#profile" class="nav-link">Профиль</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="customer-main">
+        <div class="container">
+            <!-- Приветствие -->
+            <div class="customer-welcome">
+                <h1>Здравствуйте, Иван!</h1>
+                <p>Это ваш личный кабинет заказчика. Здесь вы можете управлять заказами, общаться с исполнителями и настраивать профиль.</p>
+            </div>
+
+            <!-- Вкладки (табы) -->
+            <div class="customer-tabs">
+                <button class="customer-tab active" data-tab="overview">Обзор</button>
+                <button class="customer-tab" data-tab="orders">Мои заказы</button>
+                <button class="customer-tab" data-tab="chat">Чат</button>
+                <button class="customer-tab" data-tab="profile">Профиль</button>
+            </div>
+
+            <!-- Содержимое вкладок -->
+            <div class="customer-content">
+                <!-- Обзор -->
+                <div class="tab-pane active" id="overview">
+                    <h2>Обзор</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-clipboard-list"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value">5</span>
+                                <span class="stat-label">Активных заказов</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value">12</span>
+                                <span class="stat-label">Выполнено</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value">8</span>
+                                <span class="stat-label">Исполнителей в работе</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value">2</span>
+                                <span class="stat-label">Новых сообщения</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Последние заказы -->
+                    <h3>Последние заказы</h3>
+                    <div class="recent-orders">
+                        <div class="order-card">
+                            <div class="order-header">
+                                <span class="order-title">Разработка лендинга</span>
+                                <span class="order-status status-active">В работе</span>
+                            </div>
+                            <div class="order-meta">Исполнитель: Алексей Петров · Бюджет: 30 000 ₽</div>
+                        </div>
+                        <div class="order-card">
+                            <div class="order-header">
+                                <span class="order-title">Настройка CRM</span>
+                                <span class="order-status status-pending">Ищет исполнителя</span>
+                            </div>
+                            <div class="order-meta">Бюджет: 15 000 ₽ · Откликов: 3</div>
+                        </div>
+                        <div class="order-card">
+                            <div class="order-header">
+                                <span class="order-title">Аудит безопасности</span>
+                                <span class="order-status status-completed">Завершён</span>
+                            </div>
+                            <div class="order-meta">Исполнитель: Екатерина Смирнова · Бюджет: 25 000 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Мои заказы (полный список) -->
+                <div class="tab-pane" id="orders">
+                    <h2>Мои заказы</h2>
+                    <button class="btn btn-primary" id="newOrderBtn" style="margin-bottom: 20px;"><i class="fas fa-plus"></i> Новый заказ</button>
+                    <div class="orders-list">
+                        <!-- Здесь будет динамический список заказов -->
+                    </div>
+                </div>
+
+                <!-- Чат с исполнителями -->
+                <div class="tab-pane" id="chat">
+                    <h2>Чат с исполнителями</h2>
+                    <div class="chat-container">
+                        <!-- Список диалогов -->
+                        <div class="chat-sidebar">
+                            <div class="chat-search">
+                                <input type="text" placeholder="Поиск собеседника...">
+                            </div>
+                            <div class="chat-contacts">
+                                <div class="chat-contact active" data-contact="alexey">
+                                    <img src="https://i.pravatar.cc/40?img=7" alt="Avatar" class="contact-avatar">
+                                    <div class="contact-info">
+                                        <span class="contact-name">Алексей Петров</span>
+                                        <span class="contact-last-msg">Готов обсудить детали</span>
+                                    </div>
+                                    <span class="contact-time">10:30</span>
+                                </div>
+                                <div class="chat-contact" data-contact="ekaterina">
+                                    <img src="https://i.pravatar.cc/40?img=5" alt="Avatar" class="contact-avatar">
+                                    <div class="contact-info">
+                                        <span class="contact-name">Екатерина Смирнова</span>
+                                        <span class="contact-last-msg">Спасибо за заказ!</span>
+                                    </div>
+                                    <span class="contact-time">Вчера</span>
+                                </div>
+                                <div class="chat-contact" data-contact="dmitry">
+                                    <img src="https://i.pravatar.cc/40?img=8" alt="Avatar" class="contact-avatar">
+                                    <div class="contact-info">
+                                        <span class="contact-name">Дмитрий Козлов</span>
+                                        <span class="contact-last-msg">Когда планируете утвердить ТЗ?</span>
+                                    </div>
+                                    <span class="contact-time">12.05</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Окно чата -->
+                        <div class="chat-window">
+                            <div class="chat-header">
+                                <img src="https://i.pravatar.cc/40?img=7" alt="Avatar" class="chat-avatar">
+                                <span class="chat-with">Алексей Петров</span>
+                                <button class="chat-back-btn"><i class="fas fa-arrow-left"></i></button>
+                            </div>
+                            <div class="chat-messages" id="chatMessages">
+                                <!-- Сообщения будут добавляться сюда динамически -->
+                            </div>
+                            <div class="chat-input-area">
+                                <input type="text" placeholder="Напишите сообщение..." id="chatInput">
+                                <button id="sendMessageBtn"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Профиль (заглушка) -->
+                <div class="tab-pane" id="profile">
+                    <h2>Профиль</h2>
+                    <p>Здесь будет форма редактирования профиля, настройки уведомлений и т.д.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__col">
+                <h4>АКАЛАН</h4>
+                <p>Биржа IT‑услуг<br>Работаем по всей России</p>
+            </div>
+            <div class="footer__col">
+                <h4>Контактная информация</h4>
+                <p><i class="fas fa-envelope"></i> support@akalan.ru</p>
+                <p><i class="fas fa-phone-alt"></i> +7 (800) 123-45-67</p>
+            </div>
+            <div class="footer__col">
+                <h4>Дополнительно</h4>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Помощь</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>&copy; 2026 АКАЛАН. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Переключение вкладок
+            const tabs = document.querySelectorAll('.customer-tab');
+            const panes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.dataset.tab;
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(targetId).classList.add('active');
+
+                    if (targetId === 'chat') {
+                        const firstContact = document.querySelector('.chat-contact');
+                        if (firstContact) {
+                            document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'));
+                            firstContact.classList.add('active');
+                            updateChatHeader(firstContact);
+                            loadMessages(firstContact.dataset.contact);
+                        }
+                    }
+                });
+            });
+
+            // --- Чат (аналогично странице исполнителя) ---
+            const contacts = document.querySelectorAll('.chat-contact');
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendMessageBtn');
+            const chatHeader = document.querySelector('.chat-header .chat-with');
+            const chatAvatar = document.querySelector('.chat-header .chat-avatar');
+            const backBtn = document.querySelector('.chat-back-btn');
+            const chatSidebar = document.querySelector('.chat-sidebar');
+            const chatWindow = document.querySelector('.chat-window');
+
+            const messagesData = {
+                alexey: [
+                    { from: 'alexey', text: 'Здравствуйте! Готов обсудить детали проекта.', time: '10:15' },
+                    { from: 'me', text: 'Добрый день! Давайте созвонимся сегодня в 16:00?', time: '10:20' },
+                    { from: 'alexey', text: 'Отлично, договорились.', time: '10:30' }
+                ],
+                ekaterina: [
+                    { from: 'ekaterina', text: 'Спасибо за заказ! Работа выполнена.', time: 'Вчера' },
+                    { from: 'me', text: 'Большое спасибо, всё отлично!', time: 'Вчера' }
+                ],
+                dmitry: [
+                    { from: 'dmitry', text: 'Когда планируете утвердить ТЗ?', time: '12.05' },
+                    { from: 'me', text: 'Завтра скину финальную версию.', time: '12.05' }
+                ]
+            };
+
+            let activeContact = 'alexey';
+
+            function loadMessages(contactId) {
+                chatMessages.innerHTML = '';
+                const messages = messagesData[contactId] || [];
+                messages.forEach(msg => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.classList.add('chat-message');
+                    msgDiv.classList.add(msg.from === 'me' ? 'my-message' : 'their-message');
+                    msgDiv.innerHTML = `
+                        <div class="message-content">${msg.text}</div>
+                        <div class="message-time">${msg.time}</div>
+                    `;
+                    chatMessages.appendChild(msgDiv);
+                });
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function updateChatHeader(contactElement) {
+                const name = contactElement.querySelector('.contact-name').innerText;
+                const avatarSrc = contactElement.querySelector('.contact-avatar').src;
+                chatHeader.innerText = name;
+                chatAvatar.src = avatarSrc;
+            }
+
+            contacts.forEach(contact => {
+                contact.addEventListener('click', () => {
+                    contacts.forEach(c => c.classList.remove('active'));
+                    contact.classList.add('active');
+                    activeContact = contact.dataset.contact;
+                    updateChatHeader(contact);
+                    loadMessages(activeContact);
+
+                    if (window.innerWidth <= 768) {
+                        chatSidebar.style.display = 'none';
+                        chatWindow.style.display = 'flex';
+                    }
+                });
+            });
+
+            backBtn.addEventListener('click', () => {
+                chatSidebar.style.display = 'flex';
+                chatWindow.style.display = 'none';
+            });
+
+            function sendMessage() {
+                const text = chatInput.value.trim();
+                if (text === '') return;
+
+                if (!messagesData[activeContact]) {
+                    messagesData[activeContact] = [];
+                }
+                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                messagesData[activeContact].push({ from: 'me', text: text, time: time });
+
+                const msgDiv = document.createElement('div');
+                msgDiv.classList.add('chat-message', 'my-message');
+                msgDiv.innerHTML = `
+                    <div class="message-content">${text}</div>
+                    <div class="message-time">${time}</div>
+                `;
+                chatMessages.appendChild(msgDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                chatInput.value = '';
+
+                const activeContactElem = document.querySelector(`.chat-contact[data-contact="${activeContact}"]`);
+                if (activeContactElem) {
+                    const lastMsgSpan = activeContactElem.querySelector('.contact-last-msg');
+                    if (lastMsgSpan) lastMsgSpan.innerText = text;
+                }
+            }
+
+            sendBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // Инициализация чата
+            const firstContact = document.querySelector('.chat-contact');
+            if (firstContact) {
+                firstContact.classList.add('active');
+                updateChatHeader(firstContact);
+                loadMessages(firstContact.dataset.contact);
+            }
+
+            if (window.innerWidth <= 768) {
+                chatWindow.style.display = 'none';
+                chatSidebar.style.display = 'flex';
+            } else {
+                chatSidebar.style.display = 'flex';
+                chatWindow.style.display = 'flex';
+            }
+
+            // --- Список заказов (динамическая загрузка) ---
+            const ordersList = document.querySelector('#orders .orders-list');
+            if (ordersList) {
+                const dummyOrders = [
+                    { title: 'Разработка лендинга', executor: 'Алексей Петров', budget: 30000, status: 'В работе' },
+                    { title: 'Настройка CRM', executor: 'Ищет исполнителя', budget: 15000, status: 'pending', responses: 3 },
+                    { title: 'Аудит безопасности', executor: 'Екатерина Смирнова', budget: 25000, status: 'completed' },
+                    { title: 'Интеграция API', executor: 'Дмитрий Козлов', budget: 40000, status: 'active' },
+                ];
+                dummyOrders.forEach(order => {
+                    const card = document.createElement('div');
+                    card.className = 'order-card';
+                    let statusClass = '';
+                    let statusText = order.status;
+                    if (order.status === 'В работе' || order.status === 'active') {
+                        statusClass = 'status-active';
+                        statusText = 'В работе';
+                    } else if (order.status === 'pending' || order.status === 'Ищет исполнителя') {
+                        statusClass = 'status-pending';
+                        statusText = 'Ищет исполнителя';
+                    } else if (order.status === 'completed') {
+                        statusClass = 'status-completed';
+                        statusText = 'Завершён';
+                    }
+                    card.innerHTML = `
+                        <div class="order-header">
+                            <span class="order-title">${order.title}</span>
+                            <span class="order-status ${statusClass}">${statusText}</span>
+                        </div>
+                        <div class="order-meta">Исполнитель: ${order.executor} · Бюджет: ${order.budget} ₽</div>
+                    `;
+                    ordersList.appendChild(card);
+                });
+            }
+
+            // Кнопка "Новый заказ"
+            const newOrderBtn = document.getElementById('newOrderBtn');
+            if (newOrderBtn) {
+                newOrderBtn.addEventListener('click', () => {
+                    alert('Форма создания нового заказа (демо)');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

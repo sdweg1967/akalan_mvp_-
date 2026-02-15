@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>АКАЛАН — IT‑услуги</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo">
+                <a href="#">АКАЛАН</a>
+            </div>
+
+          <!-- Кнопки входа/регистрации (ссылки на auth.html) -->
+<div class="header__buttons">
+    <a href="auth.html" class="btn btn-outline">Вход</a>
+    <a href="auth.html" class="btn btn-primary">Регистрация</a>
+</div>
+
+            <!-- Бургер (для мобильного меню) -->
+            <input type="checkbox" id="burger-toggle" class="burger-toggle">
+            <label for="burger-toggle" class="burger-icon"><i class="fas fa-bars"></i></label>
+
+            <!-- Навигационное меню (скрыто на мобильных, открывается бургером) -->
+            <div class="header__nav-wrapper">
+                <nav class="header__nav">
+                    <ul class="nav-list">
+                        <li><a href="#">Категории услуг</a></li>
+                        <li><a href="#">Исполнителям</a></li>
+                        <li><a href="#">Заказчикам</a></li>
+                        <li><a href="#">Помощь</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Основной блок (hero) -->
+        <section class="hero">
+            <div class="container hero__container">
+                <h1 class="hero__title">Найди профессионала для любой IT задачи – быстро и надежно!</h1>
+                <p class="hero__subtitle">Услуги рядом: разработка и программирование, поддержка и сопровождение, дизайн и интерфейсы и др.</p>
+                <div class="hero__search">
+                    <select class="search__category" aria-label="Категория услуги">
+                        <option value="all">Все категории</option>
+                        <option value="dev">Разработка</option>
+                        <option value="support">Поддержка</option>
+                        <option value="design">Дизайн</option>
+                        <option value="marketing">Маркетинг</option>
+                        <option value="security">Безопасность</option>
+                        <option value="edu">Обучение</option>
+                    </select>
+                    <input type="text" class="search__input" placeholder="Что нужно сделать?">
+                    <button class="search__btn btn btn-primary" id="searchBtn">Найти исполнителя</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Преимущества сервиса -->
+        <section class="features">
+            <div class="container features__container">
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3>Безопасные сделки и гарантия качества</h3>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Большая база проверенных исполнителей</h3>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-comments feature-icon"></i>
+                    <h3>Удобное общение и оплата через платформу</h3>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-star feature-icon"></i>
+                    <h3>Рейтинги и отзывы от реальных заказчиков</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Популярные категории (с подкатегориями) -->
+        <section class="categories">
+            <div class="container">
+                <h2 class="section-title">Популярные категории</h2>
+                <div class="categories__grid">
+                    <!-- Разработка и программирование -->
+                    <div class="category-card">
+                        <div class="category-card__header">
+                            <i class="fas fa-code category-icon"></i>
+                            <h3>Разработка и программирование</h3>
+                        </div>
+                        <ul class="category-card__list">
+                            <li><a href="#">Создание сайтов и лендингов</a></li>
+                            <li><a href="#">Разработка мобильных приложений (iOS, Android)</a></li>
+                            <li><a href="#">Создание CRM, ERP и других корпоративных систем</a></li>
+                            <li><a href="#">Автоматизация процессов и написание скриптов</a></li>
+                            <li><a href="#">Разработка игр</a></li>
+                        </ul>
+                    </div>
+                    <!-- Поддержка и сопровождение -->
+                    <div class="category-card">
+                        <div class="category-card__header">
+                            <i class="fas fa-headset category-icon"></i>
+                            <h3>Поддержка и сопровождение</h3>
+                        </div>
+                        <ul class="category-card__list">
+                            <li><a href="#">Техническая поддержка пользователей</a></li>
+                            <li><a href="#">Обслуживание серверов и баз данных</a></li>
+                            <li><a href="#">Обновление и модернизация ПО</a></li>
+                            <li><a href="#">Мониторинг и исправление багов</a></li>
+                        </ul>
+                    </div>
+                    <!-- Дизайн и интерфейсы -->
+                    <div class="category-card">
+                        <div class="category-card__header">
+                            <i class="fas fa-paint-brush category-icon"></i>
+                            <h3>Дизайн и интерфейсы</h3>
+                        </div>
+                        <ul class="category-card__list">
+                            <li><a href="#">Веб-дизайн и UX/UI проектирование</a></li>
+                            <li><a href="#">Создание логотипов и брендинг</a></li>
+                            <li><a href="#">Разработка прототипов и макетов</a></li>
+                            <li><a href="#">Создание карточек брендов</a></li>
+                        </ul>
+                    </div>
+                    <!-- Маркетинг и SEO -->
+                    <div class="category-card">
+                        <div class="category-card__header">
+                            <i class="fas fa-chart-line category-icon"></i>
+                            <h3>Маркетинг и SEO</h3>
+                        </div>
+                        <ul class="category-card__list">
+                            <li><a href="#">Продвижение сайтов (SEO, контекстная реклама)</a></li>
+                            <li><a href="#">Аналитика и настройка рекламных кампаний</a></li>
+                            <li><a href="#">Создание контента (тексты, видео, графика)</a></li>
+                        </ul>
+                    </div>
+                    <!-- Кибербезопасность -->
+                    <div class="category-card">
+                        <div class="category-card__header">
+                            <i class="fas fa-lock category-icon"></i>
+                            <h3>Кибербезопасность</h3>
+                        </div>
+                        <ul class="category-card__list">
+                            <li><a href="#">Аудит безопасности и тестирование на уязвимости</a></li>
+                            <li><a href="#">Внедрение систем защиты и шифрования данных</a></li>
+                            <li><a href="#">Обучение сотрудников безопасности</a></li>
+                        </ul>
+                    </div>
+                    <!-- Обучение и консультации -->
+                    <div class="category-card">
+                        <div class="category-card__header">
+                            <i class="fas fa-chalkboard-teacher category-icon"></i>
+                            <h3>Обучение и консультации</h3>
+                        </div>
+                        <ul class="category-card__list">
+                            <li><a href="#">Репетиторство по программированию и IT-темам</a></li>
+                            <li><a href="#">Консультации по выбору технологий и архитектуры</a></li>
+                            <li><a href="#">Проведение тренингов и мастер-классов</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Как это работает -->
+        <section class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">Как это работает</h2>
+                <div class="steps">
+                    <div class="step-item">
+                        <div class="step-icon"><i class="fas fa-file-signature"></i></div>
+                        <h4>1. Оставляете заявку</h4>
+                        <p>Опишите задачу — исполнители предложат свои цены</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-icon"><i class="fas fa-inbox"></i></div>
+                        <h4>2. Получаете отклики</h4>
+                        <p>Сравнивайте портфолио и рейтинг специалистов</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-icon"><i class="fas fa-user-check"></i></div>
+                        <h4>3. Выбираете специалиста</h4>
+                        <p>Обсудите детали и заключите сделку</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                        <h4>4. Оплачиваете и оцениваете</h4>
+                        <p>Безопасная оплата после выполнения</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы пользователей (сгенерированы) -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Отзывы пользователей</h2>
+                <div class="testimonials__grid">
+                    <div class="testimonial-card">
+                        <img src="https://i.pravatar.cc/80?img=7" alt="Фото" class="testimonial-img">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">«Нашел отличного разработчика для лендинга. Всё сделано быстро и качественно, обязательно обращусь еще!»</p>
+                            <h4>Дмитрий С.</h4>
+                            <span class="testimonial-role">Заказчик</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="https://i.pravatar.cc/80?img=20" alt="Фото" class="testimonial-img">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">«Платформа помогла найти постоянных клиентов. Удобный чат и безопасная оплата — то, что нужно фрилансеру.»</p>
+                            <h4>Екатерина Л.</h4>
+                            <span class="testimonial-role">Исполнитель (UI/UX дизайнер)</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="https://i.pravatar.cc/80?img=13" alt="Фото" class="testimonial-img">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">«Заказал аудит безопасности. Специалист выявил уязвимости, дал рекомендации. Сервис супер!»</p>
+                            <h4>Алексей К.</h4>
+                            <span class="testimonial-role">Заказчик</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__col">
+                <h4>АКАЛАН</h4>
+                <p>Биржа IT‑услуг<br>Работаем по всей России</p>
+                <div class="footer__social">
+                    <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer__col">
+                <h4>Контактная информация</h4>
+                <p><i class="fas fa-envelope"></i> support@akalan.ru</p>
+                <p><i class="fas fa-phone-alt"></i> +7 (800) 123-45-67</p>
+                <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Программистов, д. 1</p>
+            </div>
+            <div class="footer__col">
+                <h4>Дополнительно</h4>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Помощь</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Пользовательское соглашение</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>&copy; 2026 АКАЛАН. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
